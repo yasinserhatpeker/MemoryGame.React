@@ -1,7 +1,10 @@
+/* Mevcut CSS'inizi koruyarak sınırlı responsive eklentiler */
+
+/* Base styles - already in your App.css */
 .container {
     max-width: 550px;
     margin: 10px auto;
-    
+    padding: 0 15px; /* Küçük ekranlarda kenar boşluğu ekler */
 }
 
 .card-grid {
@@ -17,29 +20,27 @@
     border-radius: 5px;
     display: block;
 }
+
 .btn-game {
     cursor: pointer;
-    background-color: brown;;
-    color:antiquewhite;
+    background-color: brown;
+    color: antiquewhite;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
-
-
 }
 
 .card {
     position: relative;
 }
 
-
 .card .cardFront {
     position: absolute;
     transform: rotateY(90deg);
     transition: all ease-in 0.25s;
 }
+
 .card .cardBack {
-   
     transform: rotateY(0deg);
     transition: all ease-in 0.25s;
 }
@@ -48,86 +49,43 @@
     transform: rotateY(0deg);
     transition-delay: 0.25s;
 }
+
 .rotated .cardBack {
-   
     transform: rotateY(90deg);
     transition-delay: 0.25s;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 1.2em; /* Mobil için daha küçük yazı tipi */
-    }
-    
+/* Minimal responsive styles that maintain desktop-like appearance */
+@media screen and (max-width: 600px) {
     .container {
-        max-width: 100%;
-        margin: 5px auto;
-    }
-    
-    h1 {
-        font-size: 1.5rem; /* Başlığı daha küçük yap */
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    
-    .card-grid {
-        grid-template-columns: repeat(3, 1fr); /* Tabletler için 3 sütun */
-        gap: 8px;
-    }
-    
-    .btn-game {
-        width: 80%;
-        max-width: 200px;
-        margin: 5px auto 10px;
-        display: block;
-        padding: 8px;
-        font-size: 1rem;
-    }
-}
-
-/* Daha küçük mobil telefonlar için */
-@media screen and (max-width: 480px) {
-    body {
-        font-size: 1em;
-    }
-    
-    .card-grid {
-        grid-template-columns: repeat(2, 1fr); /* Küçük ekranlar için 2 sütun */
-        gap: 6px;
-    }
-    
-    .container {
+        width: 90%;
+        max-width: 550px; /* Masaüstü görünümü ile aynı maksimum genişlik */
+        margin: 10px auto;
         padding: 0 10px;
     }
     
-    h1 {
-        font-size: 1.3rem;
-    }
-    
-    p {
-        margin: 8px 0;
-        font-size: 0.9rem;
-    }
-    
-    .btn-game {
-        font-size: 0.9rem;
-        padding: 6px;
-    }
-}
-
-/* Çok küçük ekranlar için (eski telefonlar) */
-@media screen and (max-width: 320px) {
+    /* Grid yapısını koruyarak sadece küçük bir boyut uyarlaması */
     .card-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 4px;
+        gap: 8px;
     }
     
     h1 {
-        font-size: 1.1rem;
+        font-size: 1.6rem; /* Çok az küçültülmüş başlık */
     }
 }
 
-/* Dokunmatik cihazlar için iyileştirmeler */
+/* Very small screens - maintain 4 columns but reduce gaps */
+@media screen and (max-width: 400px) {
+    .card-grid {
+        gap: 5px;
+    }
+    
+    .container {
+        padding: 0 5px;
+    }
+}
+
+/* Better touch targets for mobile without changing layout */
 @media (hover: none) {
     .btn-game {
         padding: 12px; /* Dokunma alanını genişlet */
@@ -135,30 +93,5 @@
     
     .card img {
         -webkit-tap-highlight-color: transparent; /* Tıklama vurgusunu kaldır */
-    }
-}
-
-/* Ekran yönlendirmesi için optimizasyon */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-    .container {
-        margin: 0 auto;
-    }
-    
-    h1 {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    
-    .card-grid {
-        margin-top: 5px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .card .cardFront, 
-    .card .cardBack,
-    .rotated .cardFront,
-    .rotated .cardBack {
-        transition-duration: 0.1s;
     }
 }
